@@ -22,9 +22,9 @@ public class ChurchAdapter extends ArrayAdapter {
 
         private final ArrayList<Church> churcList;
 
-        public ChurchAdapter(Context context,int resource){
+        public ChurchAdapter(Context context,int resource, ArrayList<Church> churcList){
             super(context,resource);
-            churcList=new ArrayList<>();
+            this.churcList=churcList;
         }
 
         public void addChurch(Church church){

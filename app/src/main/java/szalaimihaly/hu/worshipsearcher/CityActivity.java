@@ -47,7 +47,7 @@ public class CityActivity extends Activity{
         t.run();
         ListView listViewChurhes = (ListView) findViewById(R.id.churchList);
         Log.d("sh", "Listahoszz:" + ((Integer) churchList.size()).toString());
-        final ChurchAdapter churchAdapter = new ChurchAdapter(churchList);
+        final ChurchAdapter churchAdapter = new ChurchAdapter(getApplicationContext(),R.layout.churchrow,churchList);
         listViewChurhes.setAdapter(churchAdapter);
         listViewChurhes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
