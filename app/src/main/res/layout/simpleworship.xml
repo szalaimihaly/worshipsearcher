@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ff3f8bba"
+    android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/date"
+            android:text="Időpont"
+            android:textSize="40dp"
+            android:textColor="#ffbfbf25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+            android:id="@+id/churchCity2"
+            android:text="Település"
+            android:textSize="20dp"
+            android:textColor="#ffbfbf25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+            android:id="@+id/weekcommnet2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#ffbfbf25"
+            />
+        <TextView
+            android:id="@+id/worshipcomment"
+            android:text="Megjegyzés"
+            android:textSize="14dp"
+            android:textColor="#ffbfbf25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+
+</LinearLayout>

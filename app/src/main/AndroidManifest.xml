@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="szalaimihaly.hu.worshipsearcher.CityActivity"></activity>
-        <activity android:name="szalaimihaly.hu.worshipsearcher.WorshipActivity"></activity>
+        <activity android:name=".CityActivity"></activity>
+        <activity android:name=".WorshipListActivity"></activity>
+        <activity android:name=".SimpleWorshipActivity"></activity>
     </application>
 
 </manifest>

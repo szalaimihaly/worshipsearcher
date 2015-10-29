@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name="szalaimihaly.hu.worshipsearcher.CityActivity"></activity>
-        <activity android:name="szalaimihaly.hu.worshipsearcher.WorshipActivity"></activity>
+        <activity android:name=".WorshipListActivity"></activity>
     </application>
 
 </manifest>

@@ -1,21 +1,89 @@
 package szalaimihaly.hu.worshipsearcher;
 
-
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
-/**
- * Created by Mihaly on 2015.10.21..
- */
 public class DateListener {
-    private Calendar calendar;
 
-    public DateListener(){
-        this.calendar=Calendar.getInstance();
+    private GregorianCalendar gregorianCalendar;
+    private Date date;
+    private SimpleDateFormat simpleDateFormat;
+
+    public DateListener() {
+        simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        this.date = new Date(System.currentTimeMillis());
+        this.gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(this.date);
     }
 
+    public int getDay(){
+        String dateString = simpleDateFormat.format(this.date);
+        int begin = dateString.indexOf(".");
+        String dayString = dateString.substring(begin+1, dateString.length());
+        begin = dayString.indexOf(".");
+        dayString = dayString.substring(begin+1, dayString.length());
+        int day = Integer.parseInt(dayString);
+        return day;
+    }
 
+    public int getMonth(){
+        String dateString = simpleDateFormat.format(this.date);
+        int begin = dateString.indexOf(".");
+        String monthString = dateString.substring(begin+1, dateString.length());
+        int end = monthString.indexOf(".");
+        monthString = monthString.substring(0, end);
+        int month = Integer.parseInt(monthString);
+        return month;
+    }
 
-    public static boolean isGoodDay(int month, int day, int weekid) {
+    public int getYear(){
+        String dateString = simpleDateFormat.format(this.date);
+        int end = dateString.indexOf(".");
+        dateString = dateString.substring(0, end);
+        int year = Integer.parseInt(dateString);
+        return year;
+    }
+
+    private boolean getWeekDay(int dayId){
+        return (this.gregorianCalendar.get(Calendar.DAY_OF_WEEK)==dayId);
+    }
+
+    private void incrementDay(){
+        this.date.setTime(this.date.getTime()+86400000);
+        this.gregorianCalendar.setTime(this.date);
+    }
+
+    private void incrementWeek(){
+        this.date.setTime(this.date.getTime()+86400000*7);
+        this.gregorianCalendar.setTime(this.date);
+    }
+
+    public String searchForGoodDay(int weekid, int dayId){
+        if(getWeekDay(dayId)){
+            return simpleDateFormat.format(date);
+        }
+        while (!getWeekDay(dayId)) {
+            incrementDay();
+        }
+        int month = getMonth();
+        int day = getDay();
+        while (!isGoodDay(month, day, weekid)) {
+            try{
+                Thread.sleep(1000);
+            } catch(InterruptedException e){
+                e.getMessage();
+            }
+            System.out.println(date);
+            incrementWeek();
+            month = getMonth();
+            day = getDay();
+        }
+        return simpleDateFormat.format(date);
+    }
+
+    private boolean isGoodDay(int month, int day, int weekid) {
         switch (weekid) {
             case 1: {
                 switch (month) {

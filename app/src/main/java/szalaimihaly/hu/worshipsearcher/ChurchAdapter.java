@@ -49,7 +49,7 @@ public class ChurchAdapter extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
             final Church church = churcList.get(position);
             LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View viewItem = inflater.inflate(R.layout.city, null);
+            View viewItem = inflater.inflate(R.layout.churchrow, null);
             TextView textViewChurchCity = (TextView) viewItem.findViewById(R.id.churchCity);
             textViewChurchCity.setText(church.getCity());
             TextView textViewChurchAddress = (TextView) viewItem.findViewById(R.id.churchAddress);

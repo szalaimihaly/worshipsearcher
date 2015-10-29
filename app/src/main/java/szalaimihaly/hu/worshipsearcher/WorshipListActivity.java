@@ -13,7 +13,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class WorshipActivity extends ListActivity {
+public class WorshipListActivity extends ListActivity {
 
     /** Called when the activity is first created. */
     @Override

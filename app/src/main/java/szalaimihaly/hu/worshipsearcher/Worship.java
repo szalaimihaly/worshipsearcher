@@ -3,7 +3,7 @@ package szalaimihaly.hu.worshipsearcher;
 /**
  * Created by Mihaly on 2015.04.24..
  */
-public class Worship {
+public class Worship implements Comparable<Worship>{
     private int worshipid;
     private int churchid;
     private String termin;
@@ -75,5 +75,26 @@ public class Worship {
     }
 
 
+    public void setDate(String date) {
+        this.date = date;
+    }
 
+    @Override
+    public int compareTo(Worship another) {
+        if(this.date.equals(another.date)){
+            if(!this.termin.equals(another.termin)) {
+                if (this.termin.compareTo(another.termin) < 0) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+        if(this.date.compareTo(another.date)<0){
+            return -1;
+        } else {
+            return 1;
+        }
+    }
 }
