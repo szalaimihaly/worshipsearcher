@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 
 
@@ -43,12 +44,14 @@ public class CityActivity extends Activity{
                 MainActivity.getDbl().close();
             }
         };
-        Log.d("sh",location.toString());
+        Log.d("sh", location.toString());
         t.run();
+        AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autocomplete);
         ListView listViewChurhes = (ListView) findViewById(R.id.churchList);
         Log.d("sh", "Listahoszz:" + ((Integer) churchList.size()).toString());
         final ChurchAdapter churchAdapter = new ChurchAdapter(getApplicationContext(),R.layout.churchrow,churchList);
         listViewChurhes.setAdapter(churchAdapter);
+        autoCompleteTextView.setAdapter(churchAdapter);
         listViewChurhes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
