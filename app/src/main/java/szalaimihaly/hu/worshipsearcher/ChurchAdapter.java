@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -16,16 +17,17 @@ import java.util.Collections;
 /**
  * Created by Mihaly on 2015.10.28..
  */
-public class ChurchAdapter extends BaseAdapter {
+public class ChurchAdapter extends ArrayAdapter {
 
 
         private final ArrayList<Church> churcList;
 
-        public ChurchAdapter(ArrayList<Church> churcList){
-            this.churcList=churcList;
+        public ChurchAdapter(Context context,int resource){
+            super(context,resource);
+            churcList=new ArrayList<>();
         }
 
-        public void addTemplom(Church church){
+        public void addChurch(Church church){
             churcList.add(church);
         }
 
