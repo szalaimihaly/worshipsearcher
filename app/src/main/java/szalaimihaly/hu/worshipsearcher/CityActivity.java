@@ -82,22 +82,9 @@ public class CityActivity extends Activity{
         int menuItemIndex = item.getItemId();
         String menuItemName = menuItems[menuItemIndex];
         Church selectedChurch = churchList.get(info.position);
-        MainActivity.getDbl().open();
-        ArrayList<Worship> worshipList = MainActivity.getDbl().getWorshipByChurch(selectedChurch.getChurchid());
-        DateListener dateListener = new DateListener();
-        for(Worship w: worshipList){
-            w.setDate(dateListener.searchForGoodDay(w.getWeekid(),1));
-        }
-        Collections.sort(worshipList);
-        Worship worship = worshipList.get(0);
-        String week = MainActivity.getDbl().getWeekById(worship.getWeekid());
-        MainActivity.getDbl().close();
         if(item.getTitle().equals(menuItems[0])){
             Intent intent = getIntent();
-            intent.putExtra("churchLoc",selectedChurch.getCity()+ " " +selectedChurch.getAddress());
-            intent.putExtra("date", worship.getDate() + " " + worship.getTermin());
-            intent.putExtra("week",week);
-            intent.putExtra("comment",worship.getComment());
+            intent.putExtra("churchid",selectedChurch.getChurchid());
             intent.setClass(CityActivity.this, SimpleWorshipActivity.class);
             startActivity(intent);
         }
