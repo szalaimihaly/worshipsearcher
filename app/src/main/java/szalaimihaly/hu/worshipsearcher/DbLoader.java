@@ -167,6 +167,15 @@ public class DbLoader{
         return null;
     }
 
+    public int getChurchIdFromCityAddress(String city, String address){
+        String selectquery = "SELECT * FROM " + DbConstants.Churches.DATABASE_TABLE + " WHERE " + DbConstants.Churches.CITY + "=\"" + city + "\" AND " + DbConstants.Churches.ADDRESS + "=\"" + address+"\"";
+        Cursor c = mdb.rawQuery(selectquery,null);
+        if(c.moveToFirst()){
+            return c.getInt(0);
+        }
+        return 0;
+    }
+
     public void deleteAllDataFromDb(){
         mdb.execSQL(DbConstants.Churches.DATABASE_DROP);
         mdb.execSQL(DbConstants.Weeks.DATABASE_DROP);

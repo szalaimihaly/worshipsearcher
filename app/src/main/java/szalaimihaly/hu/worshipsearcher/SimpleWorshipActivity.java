@@ -17,20 +17,26 @@ public class SimpleWorshipActivity extends Activity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        String date = bundle.getString("date");
-        String churchLoc = bundle.getString("churchLoc");
-        String week = bundle.getString("week");
-        String comment = bundle.getString("comment");
+        int churhcid = bundle.getInt("churchid");
         MainActivity.getDbl().open();
-
+        ArrayList<Worship> worshipList = MainActivity.getDbl().getWorshipByChurch(churhcid);
+        Worship worship = worshipList.get(0);
+        Church selectedChurch = MainActivity.getDbl().getChurchById(churhcid);
+        String week = MainActivity.getDbl().getWeekById(worship.getWeekid());
+        MainActivity.getDbl().close();
+        DateListener dateListener = new DateListener();
+        for(Worship w: worshipList){
+            w.setDate(dateListener.searchForGoodDay(w.getWeekid(),1));
+        }
+        Collections.sort(worshipList);
         setContentView(R.layout.simpleworship);
         TextView textViewDate = (TextView) findViewById(R.id.date);
         TextView textViewCity = (TextView) findViewById(R.id.churchCity2);
         TextView textViewWeekkComment = (TextView) findViewById(R.id.weekcommnet2);
         TextView textViewComment = (TextView) findViewById(R.id.worshipcomment);
-        textViewDate.setText(date);
-        textViewCity.setText(churchLoc);
+        textViewDate.setText(worship.getDate() + " " + worship.getTermin());
+        textViewCity.setText(selectedChurch.getCity() + " " + selectedChurch.getAddress());
         textViewWeekkComment.setText(week);
-        textViewComment.setText(comment);
+        textViewComment.setText(worship.getComment());
     }
 }
